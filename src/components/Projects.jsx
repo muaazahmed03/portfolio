@@ -15,11 +15,12 @@ const Projects = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between border-t border-gray-500 border-b py-4 sm:py-6 w-full gap-4 sm:gap-0">
         <div className="flex items-center space-x-3 sm:space-x-4 lg:space-x-6 flex-1 min-w-0">
           {/* Circle with image inside */}
-          <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full bg-white border overflow-hidden flex-shrink-0">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full bg-white border-2 overflow-hidden flex-shrink-0 shadow-md">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFwKVd1uz_lEsR0hma_FRCcRubRQGXVXuTlMHK0PIhnLptKGSTFW8PfP_8AOrP7Ro43PQ&usqp=CAU"
               alt="Crispy Bites"
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
           <div className="min-w-0 flex-1">
@@ -36,6 +37,7 @@ const Projects = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="text-stone-100 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-2 flex items-center justify-center hover:bg-teal-300 hover:text-black transition-all duration-300 flex-shrink-0 self-center sm:ml-4 text-lg sm:text-xl"
+          aria-label="View Crispy Bites project"
         >
           →
         </a>
@@ -74,6 +76,7 @@ const Projects = () => {
         <button
           onClick={() => navigate("/fastfood")}
           className="text-stone-100 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full border-2 flex items-center justify-center hover:bg-teal-300 hover:text-black transition-all duration-300 flex-shrink-0 self-center sm:ml-4 text-lg sm:text-xl active:scale-95"
+          aria-label="View Food App details"
         >
           →
         </button>

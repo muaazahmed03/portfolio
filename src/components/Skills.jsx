@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Search, Filter, ChevronDown, Star, Code, Database, Layout, Smartphone } from "lucide-react"
+import { Search, ChevronDown, Star, Code, Database, Layout, Smartphone } from "lucide-react"
 
 const skillsData = [
   {
@@ -278,27 +278,20 @@ const Skills = () => {
 
           <div className="flex items-center gap-4 w-full sm:w-auto">
             {/* Category Filter */}
-            <div className="relative group w-full sm:w-auto">
-              <button className="flex items-center justify-between gap-2 w-full sm:w-auto px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg hover:bg-gray-700 transition-colors duration-200 text-gray-200">
-                <div className="flex items-center gap-2">
-                  <Filter size={18} className="text-teal-400" />
-                  <span>{categories.find((c) => c.id === selectedCategory)?.name || "All Skills"}</span>
-                </div>
-                <ChevronDown size={16} className="text-gray-400" />
-              </button>
-              <div className="absolute z-10 mt-2 w-full bg-gray-800 border border-gray-700 rounded-lg shadow-xl hidden group-hover:block">
+            <div className="relative w-full sm:w-auto">
+              <select
+                className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 text-gray-200 appearance-none cursor-pointer"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+              >
                 {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    className={`flex items-center gap-2 w-full text-left px-4 py-2 hover:bg-gray-700 transition-colors duration-200 ${
-                      selectedCategory === category.id ? "text-teal-400" : "text-gray-200"
-                    }`}
-                    onClick={() => setSelectedCategory(category.id)}
-                  >
-                    <category.icon size={16} />
-                    <span>{category.name}</span>
-                  </button>
+                  <option key={category.id} value={category.id} className="bg-gray-800">
+                    {category.name}
+                  </option>
                 ))}
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <ChevronDown size={16} className="text-gray-400" />
               </div>
             </div>
 
@@ -500,20 +493,28 @@ const Skills = () => {
                         alt={skill.name}
                         className="w-8 h-8 object-contain"
                         onError={(e) => {
-                          e.target.onerror = null
-                          e.target.src = "https://via.placeholder.com/96?text=" + skill.name
+                          e.target.onerror = null;
+                          e.target.src =
+                            "https://via.placeholder.com/96?text=" + skill.name;
                         }}
                       />
                     </div>
                     <div>
                       <h3 className="font-semibold text-white flex items-center gap-1">
                         {skill.name}
-                        {skill.featured && <Star size={12} className="text-yellow-400 fill-yellow-400 ml-1" />}
+                        {skill.featured && (
+                          <Star
+                            size={12}
+                            className="text-yellow-400 fill-yellow-400 ml-1"
+                          />
+                        )}
                       </h3>
                     </div>
                   </div>
 
-                  <div className="hidden sm:block sm:col-span-4 text-gray-400 text-sm self-center">{skill.desc}</div>
+                  <div className="hidden sm:block sm:col-span-4 text-gray-400 text-sm self-center">
+                    {skill.desc}
+                  </div>
 
                   <div className="col-span-4 sm:col-span-2 self-center">
                     <span className="inline-block px-2 py-1 bg-gray-700/50 rounded-full text-xs font-medium text-gray-300 capitalize">
@@ -531,7 +532,9 @@ const Skills = () => {
                         animate={isInView ? "visible" : "hidden"}
                       />
                     </div>
-                    <div className="text-xs text-right mt-1 text-teal-400">{skill.proficiency}%</div>
+                    <div className="text-xs text-right mt-1 text-teal-400">
+                      {skill.proficiency}%
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -558,7 +561,8 @@ const Skills = () => {
                 <span className="text-2xl font-bold text-white">
                   {category.id === "all"
                     ? skillsData.length
-                    : skillsData.filter((s) => s.category === category.id).length}
+                    : skillsData.filter((s) => s.category === category.id)
+                        .length}
                 </span>
               </div>
               <h4 className="text-gray-400 text-sm">{category.name}</h4>
@@ -567,7 +571,7 @@ const Skills = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;
